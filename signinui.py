@@ -20,7 +20,7 @@ def sign_in():
             acnt_num = i[1]
             acnt_pin = i[2]
             acnt_bal = i[3]
-            with open('C:\\Users\\91944\\Downloads\\IP\\Bank-Application\\user.csv','w',newline ='') as f:
+            with open('user.csv','w',newline ='') as f:
                 fwriter = csv.writer(f)
                 fwriter.writerow((acnt_name,acnt_num,acnt_pin,acnt_bal))
                 f.flush()
@@ -41,7 +41,7 @@ sql = 'select * from info'
 x.execute(sql)
 rows = x.fetchall()
 
-img = PhotoImage(file='C:\\Users\\91944\\Downloads\\IP\\Bank-Application\\login.png')
+img = PhotoImage(file='login.png')
 Label(root,image=img,bg='white').place(x=10,y=-40)
 
 frame = Frame(root,width=300,height=300,bg='white')

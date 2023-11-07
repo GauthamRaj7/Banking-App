@@ -222,7 +222,7 @@ root.resizable(False,False)
 
 
 
-with open('C:\\Users\\91944\\Downloads\\IP\\Bank-Application\\user.csv','r',newline='') as f:
+with open('user.csv','r',newline='') as f:
     for i in csv.reader(f):
         nam = i[0]
         num = i[1]
@@ -239,7 +239,7 @@ screen1.place(x=0,y=0)
 
 Label(screen1,text='Welcome to Bank',bg='#69b1f4',fg='black',font=('Calibri',20,'bold')).place(x=235,y=15)
 
-image = Image.open('C:\\Users\\91944\\Downloads\\IP\\Bank-Application\\profile.png')
+image = Image.open('profile.png')
 resize_image = image.resize((100,100))
 img = ImageTk.PhotoImage(resize_image)
 label1 = Label(image = img,bg='#69b1f4')
