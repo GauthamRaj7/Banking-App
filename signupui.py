@@ -31,7 +31,7 @@ win.resizable(False,False)
 win.configure(bg='#fff')
 win.geometry('935x500+200+100')
 
-img = PhotoImage(file='C:\\Users\\91944\\Downloads\\IP\\Bank-Application\\sign.png')
+img = PhotoImage(file='sign.png')
 bglabel = Label(win,image=img,bg='white')
 bglabel.place(x=-30,y=40)
 
