@@ -53,20 +53,21 @@ def clicked3():
     cb = cb[0]
     if cb>=a:
         cb = cb - a
+        sql2 = 'update info set currentbal = %s where accno = %s'
+        x.execute(sql2,(cb,num))
+        mydb.commit()
+        x.execute(sql1,(b,))
+        cb1 = x.fetchone()
+        cb1 = cb1[0]
+        cb1 = cb1 + a
+        x.execute(sql2,(cb1,b))
+        mydb.commit()
+        messagebox.showinfo('Success','Amount successfully transferred')
+        screen.destroy()
     else:
         messagebox.showerror('Sorry','Insufficient Balance')
         screen.destroy()
-    sql2 = 'update info set currentbal = %s where accno = %s'
-    x.execute(sql2,(cb,num))
-    mydb.commit()
-    x.execute(sql1,(b,))
-    cb1 = x.fetchone()
-    cb1 = cb1[0]
-    cb1 = cb1 + a
-    x.execute(sql2,(cb1,b))
-    mydb.commit()
-    messagebox.showinfo('Success','Amount successfully transferred')
-    screen.destroy()
+    
 
 def trans():
     global screen, amnt2, transacnt
@@ -111,6 +112,9 @@ def deposit():
     
 
 def destro():
+    with open('user.csv','w',newline='') as f:
+        fwriter = csv.writer(f)
+        fwriter.writerow('')
     root.destroy()
 
 def withd():
@@ -212,6 +216,18 @@ def disp2():
     tree.bind('<<TreeviewSelect>>',lambda event: print(event))
     tree.pack()
 
+def delet():
+    a = messagebox.askquestion("Warning","Are you sure you want to delete your account?",icon = 'question')
+    if a == 'yes':
+        sql = 'delete from info where name = %s'
+        x.execute(sql,(nam,))
+        mydb.commit()
+        messagebox.showinfo('Success','Account successfully deleted')
+        root.destroy()
+        import signinui
+    else:
+        pass
+    
 
 
 root = ThemedTk()
@@ -221,6 +237,8 @@ root.configure(bg='#fff')
 root.resizable(False,False)
 
 
+mydb = mysql.connector.connect(host = 'localhost',user = 'root',password = 'Gr12345_',database = 'bank')
+x=mydb.cursor()
 
 with open('user.csv','r',newline='') as f:
     for i in csv.reader(f):
@@ -228,6 +246,7 @@ with open('user.csv','r',newline='') as f:
         num = i[1]
         pin = i[2]
         bal = i[3]
+
 
 
 
@@ -249,6 +268,7 @@ label1.place(x=750,y=20)
 Label(text='Account name : '+nam,bg='#69b1f4',fg='black',font=('Calibri',15,'bold')).place(x=700,y=140)
 Label(text='Account number : '+num,bg='#69b1f4',fg='black',font=('Calibri',14,'bold')).place(x=700,y=180)
 
+
 dep = Button(screen1,width=40,height=2,text='Deposit',border=0,bg='black',fg='white',cursor='hand2',command=deposit)
 dep.place(x=40,y=110)
 
@@ -268,4 +288,6 @@ disp1.place(x=40,y=350)
 destro = Button(screen1,width=40,height=2,text='Exit',border=0,bg='black',fg='white',cursor='hand2',command=destro)
 destro.place(x=370,y=350)
 
+delet = Button(screen1,width=30,height=2,text='Delete Account',border=0,bg='red',fg='black',cursor='hand2',command=delet)
+delet.place(x=700,y=350)
 root.mainloop()

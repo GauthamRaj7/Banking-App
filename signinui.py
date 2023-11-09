@@ -10,31 +10,35 @@ def signup():
 
 def sign_in():
     global acnt_name, acnt_num, acnt_pin, acnt_bal
-    global username , password
+    global username , password, flag
     username=user.get()
     password=code.get()
     for i in rows:
         if i[0] == username and i[2] == int(password):
-            root.destroy()
+
             acnt_name = i[0]
             acnt_num = i[1]
             acnt_pin = i[2]
             acnt_bal = i[3]
+            flag = 1
             with open('user.csv','w',newline ='') as f:
                 fwriter = csv.writer(f)
                 fwriter.writerow((acnt_name,acnt_num,acnt_pin,acnt_bal))
                 f.flush()
+            root.destroy()
             import myUI
             break
-    if acnt_name != username and acnt_pin != int(password):
+    if flag == 0:
         messagebox.showerror('Inavalid','Invalid username or password')
+        root.destroy()
+
             
 root = Tk()
 root.title('Login')
 root.geometry('935x500+200+100')
 root.configure(bg='#fff')
 root.resizable(False,False)
-flag =0
+flag = 0
 mydb = mysql.connector.connect(host = 'localhost',user = 'root',password = 'Gr12345_',database = 'bank')
 x=mydb.cursor()
 sql = 'select * from info'
