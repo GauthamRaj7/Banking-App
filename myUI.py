@@ -223,6 +223,9 @@ def delet():
         x.execute(sql,(nam,))
         mydb.commit()
         messagebox.showinfo('Success','Account successfully deleted')
+        with open('user.csv','w',newline='') as f:
+            fwriter=csv.writer(f)
+            fwriter.writerow('')
         root.destroy()
         import signinui
     else:
