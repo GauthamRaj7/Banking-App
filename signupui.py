@@ -41,6 +41,8 @@ frame.place(x=575,y=70)
 head = Label(frame,text='Sign Up',bg='white',fg='black',font=('Calibri',30,'bold'))
 head.place(x=85,y=0)
 
+
+
 def on_enter(e):
     username.delete(0, 'end')
 

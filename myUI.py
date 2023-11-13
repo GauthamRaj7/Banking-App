@@ -73,7 +73,7 @@ def trans():
     global screen, amnt2, transacnt
     screen = Toplevel()
     screen.geometry('470x250+400+230')
-    screen.title('Withdraw')
+    screen.title('Transfer')
     screen.resizable(False,False)
     frame2 =Frame(screen,bg='white',width=470,height=250).place(x=0,y=0)
     Label(screen,text='Withdraw',bg='white',fg='#69b1f4',font=('Calibri',20,'bold')).place(x=175,y=10)
@@ -99,6 +99,7 @@ def deposit():
     screen.geometry('470x250+400+230')
     screen.title('Deposit')
     screen.resizable(False,False)
+    
     frame2 =Frame(screen,bg='white',width=470,height=250).place(x=0,y=0)
     Label(screen,text='Deposit',bg='white',fg='#69b1f4',font=('Calibri',20,'bold')).place(x=175,y=10)
     Label(screen,text='Enter amount :',bg='white',fg='black',font=('Arial',15)).place(x=40,y=75)
@@ -123,6 +124,7 @@ def withd():
     screen.geometry('470x250+400+230')
     screen.title('Withdraw')
     screen.resizable(False,False)
+
     frame2 =Frame(screen,bg='white',width=470,height=250).place(x=0,y=0)
     Label(screen,text='Withdraw',bg='white',fg='#69b1f4',font=('Calibri',20,'bold')).place(x=175,y=10)
     Label(screen,text='Enter amount :',bg='white',fg='black',font=('Arial',15)).place(x=40,y=75)
@@ -169,7 +171,7 @@ def dispa():
     global scree
     scree = Tk()
     scree.geometry('200x200+550+230')
-    scree.title('Withdraw')
+    scree.title('All Accounts')
     scree.resizable(False,False)
     
     disp()
@@ -178,7 +180,7 @@ def disp2():
     global screen3
     screen3 = Tk()
     screen3.geometry('500x100+400+230')
-    screen3.title('Withdraw')
+    screen3.title('Account Info')
     screen3.resizable(False,False)
     mydb = mysql.connector.connect(host = 'localhost',user = 'root',password = 'Gr12345_',database = 'bank')
     x = mydb.cursor()
@@ -234,7 +236,7 @@ def delet():
 
 
 root = ThemedTk()
-root.title('Login')
+root.title('Bank')
 root.geometry('935x500+200+100')
 root.configure(bg='#fff')
 root.resizable(False,False)
@@ -268,6 +270,7 @@ label1 = Label(image = img,bg='#69b1f4')
 label1.image = img
 label1.pack()
 label1.place(x=750,y=20)
+
 Label(text='Account name : '+nam,bg='#69b1f4',fg='black',font=('Calibri',15,'bold')).place(x=700,y=140)
 Label(text='Account number : '+num,bg='#69b1f4',fg='black',font=('Calibri',14,'bold')).place(x=700,y=180)
 
@@ -293,4 +296,5 @@ destro.place(x=370,y=350)
 
 delet = Button(screen1,width=30,height=2,text='Delete Account',border=0,bg='red',fg='black',cursor='hand2',command=delet)
 delet.place(x=700,y=350)
+
 root.mainloop()
